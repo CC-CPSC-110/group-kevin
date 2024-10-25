@@ -1,19 +1,27 @@
-A group agreement about:
-1. How will you communicate and what the communication responsiveness expectations will be?
+# A group agreement about:
+## 1. How will you communicate and what the communication responsiveness expectations will be?
 
-[We will be using discord to communicate and the expectations will be to respond within 12 hours.] 
+The group will be primarily using Discord to communicate.
+And the expectation for communicaiton responsiveness will be for group members to respond within 12 hours.
 
-2. Meeting formats and structures:
+## 2. Meeting formats and structures:
 
-[We will meet Wednesday evenings and Fridays in between CS lecture and lab.] 
+The group will meet Wednesday evenings and Fridays.
+For Fridays will be in between the CS lecture and lab.
 
-3. Group roles and responsibilities:
+## 3. Group roles and responsibilities:
 
-[Player: Batbileg]
-[Opponent: Kevin]
-[Save state: Eric]
-[AI: Nima]
+The group roles and responsibilities are as follows:
 
-4. Who will be responsible for coding and testing each class?
+- Player: Batbileg
+- Opponent: Kevin
+- Save State: Eric
+- AI: Nima
 
-[Batbileg]
+## 4. Who will be responsible for coding and testing each class?
+
+The group responsibility for coding and testing each class is as follows:
+- Player: Batbileg
+- Opponent: Kevin
+- Save State: Eric
+- AI: Nima
