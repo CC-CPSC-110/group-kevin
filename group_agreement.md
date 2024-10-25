@@ -9,10 +9,10 @@ A group agreement about:
 
 3. Group roles and responsibilities:
 
-[player: Batbileg]
-[opponent: Kevin]
-[save state: Eric]
-[ai: Nima]
+[Player: Batbileg]
+[Opponent: Kevin]
+[Save state: Eric]
+[AI: Nima]
 
 4. Who will be responsible for coding and testing each class?
 
