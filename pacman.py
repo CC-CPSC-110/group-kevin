@@ -1,11 +1,8 @@
 from dataclasses import dataclass
+from character import Character
 
 @dataclass
-class Player:
-    x : int
-    y : int
-    hp : int
-    atk : int
+class Player(Character):
     name: str
 
     
