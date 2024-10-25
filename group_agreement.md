@@ -5,7 +5,7 @@ A group agreement about:
 
 2. Meeting formats and structures:
 
-[We will meet Wednesday evenings and fridays in between CS lecture and lab.] 
+[We will meet Wednesday evenings and Fridays in between CS lecture and lab.] 
 
 3. Group roles and responsibilities:
 
