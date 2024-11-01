@@ -5,19 +5,17 @@ from typing import List
 
 @dataclass
 class Pellet:
-    maze_id: int
-    walls: List[Wall]
-    pellets: List[Pellets]
-    power_pellets: List[PowerPellet]
+    pellet_id: str
+    eaten: bool
 
 @dataclass
-class MazeTyped:
+class PelletTyped:
     field_name: str
     type: str
     presence: str
     description: str
 
-def parse_row_to_maze(row: str) -> MazeTyped:
+def parse_row_to_pellet(row: str) -> PelletTyped:
     """
     Purpose: Convert a comma-separated string row into a Maze instance.
     Example:
@@ -32,27 +30,27 @@ def parse_row_to_maze(row: str) -> MazeTyped:
     presence = columns[2]
     description = columns[3]
 
-    # Return a MazeTyped instance
-    return MazeTyped(
+    # Return a PelletTyped instance
+    return PelletTyped(
         field_name=field_name,
         type=type,
         presence=presence,
         description=description,
     )
 # Helper function to parse all rows
-def parse_maze(rows: List[str]) -> List[MazeTyped]:
+def parse_pellet(rows: List[str]) -> List[PelletTyped]:
     """
-    Purpose: Parse multiple rows of route data into a list of MazeTyped instances.
+    Purpose: Parse multiple rows of route data into a list of PelletTyped instances.
     Example:
-        parse_maze([
-            "maze_id, Unique ID, required, A unique identifier for the maze.",
-            "maze_id, Unique ID, required, A unique identifier for the maze."
-        ]) -> [MazeTyped(...), MazeTyped(...)]
+        parse_pellet([
+            "pellet_id, str, required, A unique identifier for each point object",
+            "eaten, Boolean, required, Whether the pellet has been eaten or not"
+        ]) -> [PelletTyped(...), PelletTyped(...)]
     """
     return [parse_row_to_maze(row) for row in rows]
 
 
-def query_maze(maze: list[MazeTyped], **filters) -> list[MazeTyped]:
+def query_pellet(pellet: list[PelletTyped], **filters) -> list[PelletTyped]:
     """
     Purpose: Query the list of characters based on filters such as field_name, type, presence, description.
     Example:
@@ -63,7 +61,7 @@ def query_maze(maze: list[MazeTyped], **filters) -> list[MazeTyped]:
     Returns:
         List of PlayerTyped instances that match all the provided filters.
     """
-    results = maze
+    results = pellet
 
     for attr, value in filters.items():
         results = [maze for maze in results if getattr(maze, attr) == value]
@@ -71,17 +69,17 @@ def query_maze(maze: list[MazeTyped], **filters) -> list[MazeTyped]:
     return results
 
 
-with open("maze.csv", 'r') as file:
+with open("pellet.csv", 'r') as file:
     lines = file.readlines()
-    maze = parse_maze(lines[1:])
-    print(f"There were {len(maze)} Ghost.")
+    pellet = parse_pellet(lines[1:])
+    print(f"There were {len(pellet)} Ghost.")
 
     def query(**kwargs):
         """
         Purpose: Convenience function for querying players.
         Examples:
-            query(field_name="maze_id")
-            query(type="walls")
+            query(field_name="pellet_id")
+            query(type="str")
         """
-        for s in query_maze(maze, **kwargs):
+        for s in query_pellet(pellet, **kwargs):
             print(s)
