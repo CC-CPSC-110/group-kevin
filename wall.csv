@@ -1,2 +1,3 @@
 field_name,type,presence,description
+wall_id, str, required, The unique identifier for each wall
 is_corner, Boolean, required, Checks for if the wall is a corner
