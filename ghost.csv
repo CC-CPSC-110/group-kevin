@@ -1,0 +1,3 @@
+field_name,type,presence,description
+ghost_state, Enum, required, Indicates the current state of the ghosts. Valid options are: 0 - CHASE - The ghost is actively chasing the Pacman. 1 - SCATTER - The ghost retreats to a designated corner of the maze. 2 - FRIGHTENED - The ghost moves away from Pacman and can be eaten by Pacman. 3 - Eaten - The ghost returns to the ghost house after being eaten by Pacman.
+ghost_type, Enum, required, Indicates the ghost type. Valid options are: 0 - BLINKY - The red ghost. 1 - PINKY - The pink ghost. 2 - INKY - The blue ghost. 3 - CLYDE - The orange ghost.

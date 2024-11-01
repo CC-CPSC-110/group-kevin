@@ -1,4 +1,3 @@
 field_name,type,presence,description
-pacman_id,Unique ID, required, A unique identifier for Pacman.
 lives, int, required, The number of lives remaining for Pacman.
 is_powered_up, Boolean, required, Whether Pacman is currently powered up (e.g after eating a PowerPellet).
