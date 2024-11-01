@@ -37,6 +37,7 @@ def parse_row_to_pellet(row: str) -> PelletTyped:
         presence=presence,
         description=description,
     )
+
 # Helper function to parse all rows
 def parse_pellet(rows: List[str]) -> List[PelletTyped]:
     """
@@ -47,7 +48,7 @@ def parse_pellet(rows: List[str]) -> List[PelletTyped]:
             "eaten, Boolean, required, Whether the pellet has been eaten or not"
         ]) -> [PelletTyped(...), PelletTyped(...)]
     """
-    return [parse_row_to_maze(row) for row in rows]
+    return [parse_row_to_pellet(row) for row in rows]
 
 
 def query_pellet(pellet: list[PelletTyped], **filters) -> list[PelletTyped]:

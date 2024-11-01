@@ -1,5 +1,7 @@
 from dataclasses import dataclass
-from character import Character
+from wall import *
+from pellet import *
+from powerpellet import *
 from typing import List
 
 
@@ -7,7 +9,7 @@ from typing import List
 class Maze:
     maze_id: int
     walls: List[Wall]
-    pellets: List[Pellets]
+    pellets: List[Pellet]
     power_pellets: List[PowerPellet]
 
 @dataclass

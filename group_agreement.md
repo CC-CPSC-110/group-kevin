@@ -25,3 +25,11 @@ The group responsibility for coding and testing each class is as follows:
 - Opponent: Kevin
 - Save State: Eric
 - AI: Nima
+
+
+### Lab 8 Progress and Responsibilities:
+Determining which coders / team members will depend on game state:
+- Pacman: Batbileg
+- Ghost: Kevin
+- Maze: Eric
+- Scoremanager: Eric
