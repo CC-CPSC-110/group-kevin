@@ -1,0 +1,2 @@
+field_name,type,presence,description
+timer, float, required, The timer for when power pellet deactivates.
