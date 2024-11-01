@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from character import Character
 from typing import List
 
 
@@ -81,5 +80,5 @@ with open("point.csv", 'r') as file:
             query(field_name="maze_id")
             query(type="walls")
         """
-        for s in query_maze(maze, **kwargs):
+        for s in query_point(point, **kwargs):
             print(s)

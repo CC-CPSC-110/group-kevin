@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from character import Character
 from typing import List
 
 
