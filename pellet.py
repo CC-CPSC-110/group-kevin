@@ -4,7 +4,7 @@ from typing import List
 
 
 @dataclass
-class Maze:
+class Pellet:
     maze_id: int
     walls: List[Wall]
     pellets: List[Pellets]
