@@ -1,9 +1,12 @@
 """Manages Game state."""
 import sys
 from typing import Dict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from functools import reduce
+from datetime import datetime, timedelta
 import pygame
 import csv
+
 
 # Get the Python version as a tuple
 python_version = sys.version_info
@@ -28,6 +31,8 @@ class Game:
     clock: pygame.time.Clock
     keymap: Dict[str, str]
     deltaT: float
+    play_time: float
+    timestamp: datetime = field(default_factory=datetime.now)
     
     def tick(self) -> Self:
         """
@@ -55,4 +60,43 @@ class Game:
             self.level = int(row[1])
             
         return self
+    
+@dataclass
+class GameNode:
+    """ A node in the linked list representing a saved game state. """
+    game: Game
+    next: Self = None
+    
+@dataclass
+class GameLinkedList:
+    """ A linked list to store and amanage saved game states. """
+    head: GameNode = None
+    
+    def insert(self, game: Game) -> None:
+        """ Inserts a new saved game state at the beginning of the list """
+        new_node = GameNode(game=game, next=self.head)
+        self.head = new_node
+        
+    def to_list(self) -> list:
+        """ Converts the linked list to a list for easier operations """
+        current = self.head
+        games = []
+        while current:
+            games.append(current.game)
+            current = current.next
+        return games
+        
+# Helper functions using map, filter, and reduce
+def highest_score(saved_games: GameLinkedList) -> int:
+    """ Returns the highest score among all games. """
+    scores = map(lambda game: game.score, saved_games.to_list())
+    return reduce(lambda max_score, score: max(max_score, score), scores, 0)
+
+def most_recent_game(saved_games: GameLinkedList) -> Game:
+    """ Returns the most recent game based on the timestamp. """
+    games = saved_games.to_list()
+    return reduce(lambda recent, game: game if game.timestamp > recent.timestamp else recent, games) if games else None
+    
+    
+    
             
