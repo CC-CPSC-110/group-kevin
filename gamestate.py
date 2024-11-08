@@ -3,6 +3,7 @@ import sys
 from typing import Dict
 from dataclasses import dataclass
 import pygame
+import csv
 
 # Get the Python version as a tuple
 python_version = sys.version_info
@@ -39,8 +40,19 @@ class Game:
 
     def save(self, file_path: str) -> None:
         """Saves the current game state and writes to the game.csv"""
-        pass # stub
-
+        with open(file_path, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['score', 'level'])
+            writer.writerow([self.score, self.level])
+            
     def load(self, file_path: str) -> Self:
         """Load the game state and reads from the game.csv"""
-        return self # stub
+        with open(file_path, 'r') as file:
+            reader = csv.reader(file)
+            next(reader)
+            row = next(reader)
+            self.score = int(row[0])
+            self.level = int(row[1])
+            
+        return self
+            
