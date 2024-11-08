@@ -4,7 +4,7 @@ from typing import List
 @dataclass
 class Character:
     direction: tuple
-    x_postion: int
+    x_position: int
     y_position: int
     speed: float
 
@@ -68,19 +68,4 @@ def query_characters(characters: list[CharacterTyped], **filters) -> list[Charac
     
     return results
 
-
-with open("character.csv", 'r') as file:
-    lines = file.readlines()
-    characters = parse_characters(lines[1:])
-    print(f"There were {len(characters)} Characters.")
-
-    def query(**kwargs):
-        """
-        Purpose: Convenience function for querying characters.
-        Examples:
-            query(field_name="direction")
-            query(type="tuple")
-        """
-        for s in query_characters(characters, **kwargs):
-            print(s)
 

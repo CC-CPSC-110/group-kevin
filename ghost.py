@@ -4,9 +4,11 @@ from typing import List
 
 
 @dataclass
-class Ghost(Character):
+class Ghost:
+    ghost_id: str
     ghost_state: int
     ghost_type: int
+    color: str
 
 @dataclass
 class GhostTyped:
@@ -68,18 +70,6 @@ def query_ghost(ghost: list[GhostTyped], **filters) -> list[GhostTyped]:
     
     return results
 
-
-with open("ghost.csv", 'r') as file:
-    lines = file.readlines()
-    ghost = parse_ghost(lines[1:])
-    print(f"There were {len(ghost)} Ghost.")
-
-    def query(**kwargs):
-        """
-        Purpose: Convenience function for querying players.
-        Examples:
-            query(field_name="ghost_state")
-            query(type="Enum")
-        """
-        for s in query_ghost(ghost, **kwargs):
-            print(s)
+def make_all_ghosts_frightened(ghosts: List[Ghost]) -> List[Ghost]:
+    """ Sets all ghosts to frightened """
+    return list(map(lambda ghost: Ghost(ghost_id=ghost.ghost_id, ghost_state=2, ghost_type=ghost.ghost_type, color=ghost.color), ghosts))

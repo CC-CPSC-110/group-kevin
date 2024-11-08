@@ -68,18 +68,20 @@ def query_pellet(pellet: list[PelletTyped], **filters) -> list[PelletTyped]:
     
     return results
 
+def remaining_pellets(pellets: List[Pellet]) -> List[Pellet]:
+    """ Returns a list of pellets that are remaining """
+    return list(filter(lambda pellet: not pellet.eaten, pellets))
 
-with open("pellet.csv", 'r') as file:
-    lines = file.readlines()
-    pellet = parse_pellet(lines[1:])
-    print(f"There were {len(pellet)} Ghost.")
+def toggle_pellet_state(pellets: List[Pellet]) -> List[Pellet]:
+    """ Toggles the 'eaten' state of each pellet """
+    return list(map(lambda pellet: Pellet(pellet_id=pellet.pellet_id, eaten=not pellet.eaten), pellets))
 
-    def query(**kwargs):
-        """
-        Purpose: Convenience function for querying players.
-        Examples:
-            query(field_name="pellet_id")
-            query(type="str")
-        """
-        for s in query_pellet(pellet, **kwargs):
-            print(s)
+def total_pellets(pellets: List[Pellet]) -> int:
+    """ Returns the total number of pellets """
+    return len(pellets)
+
+def count_eaten_pellets(pellets: List[Pellet]) -> int:
+    """ Counts the number of pellets that have been eaten (later will be used to count points) """
+    return len(list(filter(lambda pellet: pellet.eaten, pellets)))
+
+

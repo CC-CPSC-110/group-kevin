@@ -1,5 +1,7 @@
 from cs110 import expect, summarize
 from gamestate import *
+from pellet import *
+from ghost import *
 
 #------------------------------------------------------------------------------#
 # Testing for gamestate.py
@@ -44,5 +46,66 @@ expect(highest_score(game_list), 250)
 # Verify the most recent game by timestamp (should be game3)
 expect(most_recent_game(game_list), game3)
 
+#------------------------------------------------------------------------------#
+# Testing for pellet.py
+#------------------------------------------------------------------------------#
+
+# Sample pellets with different eaten states
+pellet1 = Pellet(pellet_id="p1", eaten=True)
+pellet2 = Pellet(pellet_id="p2", eaten=False)
+pellet3 = Pellet(pellet_id="p3", eaten=True)
+pellet4 = Pellet(pellet_id="p4", eaten=False)
+pellets = [pellet1, pellet2, pellet3, pellet4]
+
+# Test for total number of pellets
+expect(total_pellets(pellets), 4)
+
+# Test for counting eaten pellets
+expect(count_eaten_pellets(pellets), 2)
+
+# Test for remaining pellets (those that are not eaten)
+remaining = remaining_pellets(pellets)
+expect(len(remaining), 2)
+expect(remaining[0].pellet_id, "p2")
+expect(remaining[1].pellet_id, "p4")
+
+# Test for toggling pellet states
+toggled_pellets = toggle_pellet_state(pellets)
+expect(toggled_pellets[0].eaten, not pellet1.eaten)
+expect(toggled_pellets[1].eaten, not pellet2.eaten)
+expect(toggled_pellets[2].eaten, not pellet3.eaten)
+expect(toggled_pellets[3].eaten, not pellet4.eaten)
+
+#------------------------------------------------------------------------------#
+# Testing for ghost.py
+#------------------------------------------------------------------------------#
+ghost1 = Ghost(ghost_id="g1", ghost_state=0, ghost_type=0, color="Red")   # Chase
+ghost2 = Ghost(ghost_id="g2", ghost_state=1, ghost_type=1, color="Pink")  # Scatter
+ghost3 = Ghost(ghost_id="g3", ghost_state=3, ghost_type=2, color="Blue")  # Eaten
+ghost4 = Ghost(ghost_id="g4", ghost_state=0, ghost_type=3, color="Orange")  # Chase
+
+ghosts = [ghost1, ghost2, ghost3, ghost4]
+
+frightened_ghosts = make_all_ghosts_frightened(ghosts)
+
+expect(frightened_ghosts[0].ghost_state, 2)
+expect(frightened_ghosts[0].ghost_id, "g1")
+expect(frightened_ghosts[0].ghost_type, 0)
+expect(frightened_ghosts[0].color, "Red")
+
+expect(frightened_ghosts[1].ghost_state, 2)
+expect(frightened_ghosts[1].ghost_id, "g2")
+expect(frightened_ghosts[1].ghost_type, 1)
+expect(frightened_ghosts[1].color, "Pink")
+
+expect(frightened_ghosts[2].ghost_state, 2)
+expect(frightened_ghosts[2].ghost_id, "g3")
+expect(frightened_ghosts[2].ghost_type, 2)
+expect(frightened_ghosts[2].color, "Blue")
+
+expect(frightened_ghosts[3].ghost_state, 2)
+expect(frightened_ghosts[3].ghost_id, "g4")
+expect(frightened_ghosts[3].ghost_type, 3)
+expect(frightened_ghosts[3].color, "Orange")
 
 summarize()
