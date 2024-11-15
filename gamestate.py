@@ -107,6 +107,26 @@ class GameLinkedList:
             current = current.next
         return games
 
+# Using selection sort to sort through Games
+def min_index(log: List[Game]) -> int:
+    """
+    Purpose: Find the index of the minimum values of the list of Games
+    Assume: List is non-empty
+    Expect:
+        min_index([
+            Game("1", pygame.Surface((800, 600)), 500 ...),
+            Game("2", pygame.Surface((800,600)), 650 ...)]) -> 0
+    """
+    minimum_value = log[0]
+    minimum_index = 0
+    for i in range(1, len(log)):
+        if log[i] < minimum_value:
+            minimum_value = log[i]
+            minimum_index = i
+    return minimum_index
+
+
+
 # Helper functions using map, filter, and reduce
 def highest_score(saved_games: GameLinkedList) -> int:
     """ Returns the highest score among all games. """
