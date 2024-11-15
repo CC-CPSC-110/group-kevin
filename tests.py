@@ -79,6 +79,11 @@ expect(min_index(list_two), 2)
 # Test for swap of list of games
 expect(swap(list_one, 0, 1), [game2, game1, game3])
 
+# Test for selection sort list of games
+expect(selection_sort_games(list_two), [game1, game2, game3])
+
+
+
 #------------------------------------------------------------------------------#
 # Testing for pellet.py
 #------------------------------------------------------------------------------#
