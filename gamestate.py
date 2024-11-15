@@ -21,7 +21,8 @@ else:
 @dataclass
 class Game:
     """"A game object represents all data necessary to run a game instance."""
-
+    
+    id: str
     screen: pygame.Surface
     score: int
     level: int
@@ -33,6 +34,26 @@ class Game:
     deltaT: float
     play_time: float
     timestamp: datetime = field(default_factory=datetime.now)
+    
+    def __eq__(self, other: Self) -> bool:
+        """ Checks if Games are equal. """
+        return self.id == other.id
+    
+    def __lt__(self, other: Self) -> bool:
+        """ Checks if Games' ids are less than the other. """
+        return self.id < other.id
+    
+    def __gt__(self, other: Self) -> bool:
+        """ Checks if Games' ids are greater than the other. """
+        return self.id > other.id
+    
+    def __le__(self, other: Self) -> bool:
+        """ Checks if Games' ids are less than or equal to the other. """
+        return self.id <= other.id
+    
+    def __ge__(self, other: Self) -> bool:
+        """ Checks if Games' ids are greater than or equal to the other. """
+        return self.id >= other.id
     
     def tick(self) -> Self:
         """
@@ -85,7 +106,7 @@ class GameLinkedList:
             games.append(current.game)
             current = current.next
         return games
-        
+
 # Helper functions using map, filter, and reduce
 def highest_score(saved_games: GameLinkedList) -> int:
     """ Returns the highest score among all games. """
