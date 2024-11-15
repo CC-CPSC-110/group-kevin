@@ -125,7 +125,19 @@ def min_index(log: List[Game]) -> int:
             minimum_index = i
     return minimum_index
 
-
+def swap(log: List[Game], i: int, j:  int) -> List[Game]:
+    """
+    Purpose: Swap the values at the given indices
+    Assume: List is non-empty, indices < len(list)
+    Expect:
+        swap([
+            Game("1", pygame.Surface((800, 600)), 500 ...),
+            Game("2", pygame.Surface((800,600)), 650 ...)], 0, 1) ->
+            [Game("2", pygame.Surface((800,600)), 650 ...),
+            Game("1", pygame.Surface((800, 600)), 500 ...)]
+    """
+    log[i], log[j] = log[j], log[i]
+    return log
 
 # Helper functions using map, filter, and reduce
 def highest_score(saved_games: GameLinkedList) -> int:
