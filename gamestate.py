@@ -112,7 +112,7 @@ def min_index(log: List[Game]) -> int:
     """
     Purpose: Find the index of the minimum values of the list of Games
     Assume: List is non-empty
-    Expect:
+    Examples:
         min_index([
             Game("1", pygame.Surface((800, 600)), 500 ...),
             Game("2", pygame.Surface((800,600)), 650 ...)]) -> 0
@@ -129,7 +129,7 @@ def swap(log: List[Game], i: int, j:  int) -> List[Game]:
     """
     Purpose: Swap the values at the given indices
     Assume: List is non-empty, indices < len(list)
-    Expect:
+    Examples:
         swap([
             Game("1", pygame.Surface((800, 600)), 500 ...),
             Game("2", pygame.Surface((800,600)), 650 ...)], 0, 1) ->
@@ -137,6 +137,23 @@ def swap(log: List[Game], i: int, j:  int) -> List[Game]:
             Game("1", pygame.Surface((800, 600)), 500 ...)]
     """
     log[i], log[j] = log[j], log[i]
+    return log
+
+def selection_sort_games(log: List[Game]) -> List[Game]:
+    """
+    Purpose: Sort a list of games
+    Examples:
+        selection_sort_games([
+            Game("2", pygame.Surface((800,600)), 650 ...),
+            Game("3", pygame.Surface((800, 600)), 500 ...),
+            Game("1", pygame.Surface((800, 600)), 500 ...)]) ->
+            [Game("1", pygame.Surface((800, 600)), 500 ...),
+            Game("2", pygame.Surface((800,600)), 650 ...),
+            Game("3", pygame.Surface((800, 600)), 500 ...)]
+    """
+    for i in range(len(log)):
+        min_i = i + min_index(log[i:])
+        log = swap(log, i, min_i)
     return log
 
 # Helper functions using map, filter, and reduce
