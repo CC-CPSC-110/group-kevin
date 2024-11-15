@@ -12,13 +12,13 @@ screen = pygame.Surface((800, 600))
 clock = pygame.time.Clock()
 
 # Creating Game instances with different scores and timestamps
-game1 = Game(screen=screen, score=100, level=1, fps=60.0, running=True,
+game1 = Game(id="1", screen=screen, score=100, level=1, fps=60.0, running=True,
              background="bg1", clock=clock, keymap={}, deltaT=0.0, play_time=300.0,
              timestamp=datetime.now() - timedelta(days=1))
-game2 = Game(screen=screen, score=250, level=2, fps=60.0, running=True,
+game2 = Game(id="2", screen=screen, score=250, level=2, fps=60.0, running=True,
              background="bg2", clock=clock, keymap={}, deltaT=0.0, play_time=450.0,
              timestamp=datetime.now() - timedelta(hours=5))
-game3 = Game(screen=screen, score=180, level=3, fps=60.0, running=True,
+game3 = Game(id="3", screen=screen, score=180, level=3, fps=60.0, running=True,
              background="bg3", clock=clock, keymap={}, deltaT=0.0, play_time=500.0,
              timestamp=datetime.now())
 
@@ -45,6 +45,29 @@ expect(highest_score(game_list), 250)
 
 # Verify the most recent game by timestamp (should be game3)
 expect(most_recent_game(game_list), game3)
+
+# Test for game comparable of equals
+game4 = Game(id="1", screen=screen, score=100, level=1, fps=60.0, running=True,
+             background="bg1", clock=clock, keymap={}, deltaT=0.0, play_time=300.0,
+             timestamp=datetime.now() - timedelta(days=1))
+
+expect(game1 == game2, False)
+expect(game1 == game4, True)
+
+# Test for game comparable of less than
+expect(game1 < game2, True)
+
+# Test for game comparable of greater than
+expect(game2 > game1, True)
+
+# Test for game comparable of less than or equal to
+expect(game1 <= game2, True)
+expect(game1 <= game4, True)
+
+# Test for game comparable of greater than or equal to
+expect(game1 >= game2, False)
+expect(game2 >= game1, True)
+expect(game1 >= game4, True)
 
 #------------------------------------------------------------------------------#
 # Testing for pellet.py

@@ -1,6 +1,6 @@
 """Manages Game state."""
 import sys
-from typing import Dict
+from typing import Dict, List
 from dataclasses import dataclass, field
 from functools import reduce
 from datetime import datetime, timedelta
