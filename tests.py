@@ -69,6 +69,15 @@ expect(game1 >= game2, False)
 expect(game2 >= game1, True)
 expect(game1 >= game4, True)
 
+# Test for min_index of list of games
+list_one = [game1, game2, game3]
+list_two = [game3, game2, game1]
+
+expect(min_index(list_one), 0)
+expect(min_index(list_two), 2)
+
+
+
 #------------------------------------------------------------------------------#
 # Testing for pellet.py
 #------------------------------------------------------------------------------#
