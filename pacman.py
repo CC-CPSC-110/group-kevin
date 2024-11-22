@@ -1,86 +1,31 @@
 from dataclasses import dataclass
 from character import Character
-from typing import List
-
+from typing import List, Self
 
 @dataclass
 class Pacman(Character):
-    pacman_id: int
     lives: int
-    is_powered_up: bool
+    boosted: bool
 
-@dataclass
-class PacmanTyped:
-    field_name: str
-    type: str
-    presence: str
-    description: str
-
-def parse_row_to_pacman(row: str) -> PacmanTyped:
-    """
-    Purpose: Convert a comma-separated string row into a Pacman instance.
-    Example:
-        parse_row_to_pacman("pacman_id,Unique ID, required, A unique identifier for Pacman.") 
-            -> PacmanTyped(field_name="pacman_id", type="Unique ID", presence="required", ...)
-    """
-    columns = row.split(',')
-
-    # Manually parsing each field
-    field_name = columns[0]
-    type = columns[1]
-    presence = columns[2]
-    description = columns[3]
-
-    # Return a PacmanTyped instance
-    return PacmanTyped(
-        field_name=field_name,
-        type=type,
-        presence=presence,
-        description=description,
-    )
-# Helper function to parse all rows
-def parse_pacman(rows: List[str]) -> List[PacmanTyped]:
-    """
-    Purpose: Parse multiple rows of route data into a list of PacmanTyped instances.
-    Example:
-        parse_pacman([
-            "pacman_id,Unique ID, required, A unique identifier for Pacman.",
-            "lives, int, required, The number of lives remaining for Pacman."
-        ]) -> [PacmanTyped(...), PacmanTyped(...)]
-    """
-    return [parse_row_to_pacman(row) for row in rows]
-
-
-def query_pacman(pacman: list[PacmanTyped], **filters) -> list[PacmanTyped]:
-    """
-    Purpose: Query the list of characters based on filters such as field_name, type, presence, description.
-    Example:
-        query_pacman(pacman, field_name="pacman_id") -> list of matching PacmanTyped instances
-    Args:
-        pacman: List of PacmanTyped instances.
-        **filters: Keyword arguments for filtering the characters (e.g., field_name="lives").
-    Returns:
-        List of PlayerTyped instances that match all the provided filters.
-    """
-    results = pacman
-
-    for attr, value in filters.items():
-        results = [pacman for pacman in results if getattr(pacman, attr) == value]
-    
-    return results
-
-
-with open("pacman.csv", 'r') as file:
-    lines = file.readlines()
-    pacman = parse_pacman(lines[1:])
-    print(f"There were {len(pacman)} Players.")
-
-    def query(**kwargs):
+    def move(self, deltaT: float, dirs: List[str]) -> Self:
         """
-        Purpose: Convenience function for querying players.
+        Purpose: Moves a player by speed per change in time in given directions.
         Examples:
-            query(field_name="direction")
-            query(type="tuple")
+            player = Pacman(x=100, y=100, size=10, speed=10, color="red")
+            move(player, 10, ["UP"])    -> Player(100,   0, 10, 10, "red")
+            move(player, 10, ["DOWN"])  -> Player(100, 200, 10, 10, "red")
+            move(player, 10, ["RIGHT"]) -> Player(200, 100, 10, 10, "red")
+            move(player, 10, ["LEFT"])  -> Player(  0, 100, 10, 10, "red")
+
         """
-        for s in query_pacman(pacman, **kwargs):
-            print(s)
+        amount = self.speed * deltaT
+        # we index from the top left so negative-y direction is up
+        if "UP" in dirs:
+            self.y -= amount 
+        if "DOWN" in dirs:
+            self.y += amount
+        if "LEFT" in dirs:
+            self.x -= amount
+        if "RIGHT" in dirs:
+            self.x += amount
+        return self
