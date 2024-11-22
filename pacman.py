@@ -7,7 +7,7 @@ class Pacman(Character):
     lives: int
     boosted: bool
 
-    def move(self, deltaT: float, dirs: List[str]) -> Self:
+    def move(self, dirs: List[str]) -> Self:
         """
         Purpose: Moves a player by speed per change in time in given directions.
         Examples:
@@ -18,7 +18,7 @@ class Pacman(Character):
             move(player, 10, ["LEFT"])  -> Player(  0, 100, 10, 10, "red")
 
         """
-        amount = self.speed * deltaT
+        amount = self.speed
         # we index from the top left so negative-y direction is up
         if "UP" in dirs:
             self.y -= amount 
