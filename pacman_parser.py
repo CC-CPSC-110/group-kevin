@@ -9,6 +9,7 @@ class PacmanTyped:
     speed: int
     lives: int
     boosted: bool
+    direction: int
 
 
 def parse_row_to_pacman(row: str) -> PacmanTyped:
@@ -26,14 +27,16 @@ def parse_row_to_pacman(row: str) -> PacmanTyped:
     speed = int(columns[2])
     lives = int(columns[3])
     boosted = columns[4]
+    direction = int(columns[5])
 
     # Return a PacmanTyped instance
     return PacmanTyped(
-        x_position=x_position,
-        y_position=y_position,
-        speed=speed,
-        lives=lives,
-        boosted=boosted,
+        x_position = x_position,
+        y_position = y_position,
+        speed = speed,
+        lives = lives,
+        boosted = boosted,
+        direction = direction
     )
 # Helper function to parse all rows
 def parse_pacman(rows: List[str]) -> List[PacmanTyped]:
