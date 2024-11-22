@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from character import Character
-from typing import List, Self
-from pacman_parser import *
+from typing import List
 import pygame
 
 @dataclass
