@@ -1,2 +1,2 @@
-x_position, y_position, speed, lives, boosted
-500, 500, 2, 3, False
+x_position, y_position, speed, lives, boosted, direction
+500, 500, 2, 3, False, 1

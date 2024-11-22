@@ -1,31 +1,27 @@
 from dataclasses import dataclass
 from character import Character
 from typing import List, Self
+from pacman_parser import *
+import pygame
 
 @dataclass
 class Pacman(Character):
     lives: int
     boosted: bool
-
-    def move(self, dirs: List[str]) -> Self:
-        """
-        Purpose: Moves a player by speed per change in time in given directions.
-        Examples:
-            player = Pacman(x=100, y=100, size=10, speed=10, color="red")
-            move(player, 10, ["UP"])    -> Player(100,   0, 10, 10, "red")
-            move(player, 10, ["DOWN"])  -> Player(100, 200, 10, 10, "red")
-            move(player, 10, ["RIGHT"]) -> Player(200, 100, 10, 10, "red")
-            move(player, 10, ["LEFT"])  -> Player(  0, 100, 10, 10, "red")
-
-        """
-        amount = self.speed
-        # we index from the top left so negative-y direction is up
-        if "UP" in dirs:
-            self.y -= amount 
-        if "DOWN" in dirs:
-            self.y += amount
-        if "LEFT" in dirs:
-            self.x -= amount
-        if "RIGHT" in dirs:
-            self.x += amount
-        return self
+    direction: int
+    
+    def move(self):
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.x_position += self.speed
+                    self.direction = 0
+                if event.key == pygame.K_LEFT:
+                    self.direction = 1
+                    self.x_position -= self.speed
+                if event.key == pygame.K_UP:
+                    self.direction = 2
+                    self.y_position -= self.speed
+                if event.key == pygame.K_DOWN:
+                    self.direction = 3
+                    self.y_position += self.speed
