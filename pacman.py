@@ -3,6 +3,7 @@ from character import Character
 from typing import List
 import pygame
 import math
+from board import boards
 
 @dataclass
 class Pacman(Character):
@@ -37,6 +38,7 @@ font = pygame.font.Font('freesansbold.ttf', 20)
 level = boards
 color = 'blue'
 PI = math.pi
+flicker = False
 
 
 def draw_board():
