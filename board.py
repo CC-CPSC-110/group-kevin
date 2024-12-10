@@ -4,7 +4,7 @@ import pygame
 #1 - small pellets
 #2 - large pellets
 #3 - verticle wall
-#4 - door
+#4 - ghost gate
 
 boards = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
