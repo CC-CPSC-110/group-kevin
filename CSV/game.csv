@@ -1,7 +1,0 @@
-field_name,type,presence,description
-screen,pygame.screen,required,creates the screen of the game
-score,int,required,stores the total points a player has achieved
-level,int,required,stores the level which the player is at
-fps,int,required,the frames per second of the game
-running,boolean,required,true->running false->not running
-background,color,required,the color of the background of the game

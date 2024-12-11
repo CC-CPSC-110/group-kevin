@@ -1,3 +1,0 @@
-field_name,type,presence,description
-high_score, int, required, Highest score achieved.
-current_score, int, required, The current score of the game.
